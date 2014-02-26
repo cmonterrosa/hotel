@@ -4,6 +4,9 @@ class CreateTipoHabitacions < ActiveRecord::Migration
       t.string :descripcion, :limit => 120
       t.boolean :activa
     end
+    TipoHabitacion.create(:descripcion => "RESIDENCIA", :activa => true)
+    TipoHabitacion.create(:descripcion => "DOBLE", :activa => true)
+    TipoHabitacion.create(:descripcion => "SENCILLA", :activa => true)
   end
 
   def self.down
