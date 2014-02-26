@@ -46,6 +46,9 @@ class User < ActiveRecord::Base
   attr_accessible :login, :email, :name, :password, :password_confirmation
 
 
+  before_create :assign_role_by_default
+
+
 
   # Authenticates a user by their login name and unencrypted password.  Returns the user or nil.
   #
@@ -66,6 +69,10 @@ class User < ActiveRecord::Base
   def email=(value)
     write_attribute :email, (value ? value.downcase : nil)
   end
+
+   def assign_role_by_default
+    self.roles << Role.find_by_name("operador") if Role.find_by_name("operador")
+   end
 
   
 end

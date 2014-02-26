@@ -10,6 +10,12 @@ class CreateRoles < ActiveRecord::Migration
     end
     add_index "roles_users", "role_id"
     add_index "roles_users", "user_id"
+
+    #### creamos roles por defecto ####
+    Role.create(:name => "admin")
+    Role.create(:name => "operador")
+
+
   end
 
   def self.down

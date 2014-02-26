@@ -9,7 +9,33 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140225192743) do
+ActiveRecord::Schema.define(:version => 20140226023326) do
+
+  create_table "detalle_reservacions", :force => true do |t|
+    t.integer  "reservacion_id"
+    t.integer  "habitacion_id"
+    t.datetime "fechahora_inicial"
+    t.datetime "fechahora_final"
+    t.boolean  "activa"
+  end
+
+  create_table "habitacions", :force => true do |t|
+    t.integer "capacidad"
+    t.integer "tipo_habitacion_id"
+    t.string  "descripcion",        :limit => 100
+  end
+
+  create_table "reservacions", :force => true do |t|
+    t.string   "nombre",        :limit => 60
+    t.string   "rfc",           :limit => 13
+    t.string   "direccion",     :limit => 60
+    t.string   "procedencia",   :limit => 60
+    t.string   "telefono",      :limit => 10
+    t.string   "correo",        :limit => 40
+    t.string   "observaciones", :limit => 100
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "roles", :force => true do |t|
     t.string "name"
@@ -22,6 +48,11 @@ ActiveRecord::Schema.define(:version => 20140225192743) do
 
   add_index "roles_users", ["role_id"], :name => "index_roles_users_on_role_id"
   add_index "roles_users", ["user_id"], :name => "index_roles_users_on_user_id"
+
+  create_table "tipo_habitacions", :force => true do |t|
+    t.string  "descripcion", :limit => 120
+    t.boolean "activa"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "login",                     :limit => 40
