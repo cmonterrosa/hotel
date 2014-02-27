@@ -17,6 +17,12 @@
                 <%= stylesheet_link_tag "miestilo.css"%>
                 <%= stylesheet_link_tag "calendario.css"%>
 
+                <!-- formee -->
+                <%=javascript_include_tag "formee/jquery-1.6.4.min.js" %>
+                <%=javascript_include_tag "formee/formee.js" %>
+                <%=javascript_include_tag :defaults %>
+                <%= stylesheet_link_tag "formee/formee-structure.css" %>
+                <%= stylesheet_link_tag "formee/formee-style.css" %>
                 <!--
                 <script src="js/jquery.min.js"></script>
 		<script src="js/config.js"></script>
@@ -43,7 +49,9 @@
                                                         
 							<nav id="nav">
 								<a href="index.html">Inicio</a>
-								<%=link_to "Reservaciones", :controller => "reservaciones", :action => "calendario"%>
+								<%=link_to "Agregar reservación", :controller => "reservaciones", :action => "new_or_edit"%>
+
+                                                                <%=link_to "Calendario", :controller => "reservaciones", :action => "calendario"%>
 								<!--
                                                                 <a href="twocolumn2.html">Two Column #2</a>
 								<a href="onecolumn.html" class="current-page-item">One Column</a>
@@ -70,8 +78,33 @@
 
 
 						<section>
+                                                    <table width="100%">
+                                                        <!-- Contenido principal -->
+                                                        <tr>
+                                                            <td colspan="3">
+                                                              <%if flash[:notice]%>
+                                                                <div class="formee-msg-success">
+                                                                  <h3>Operación realizada exitosamente:</h3>
+                                                                  <ul>
+                                                                      <li><%=flash[:notice]%></li>
+                                                                  </ul>
+                                                              </div>
+                                                              <%elsif flash[:error]%>
+                                                                <div class="formee-msg-error">
+                                                                  <h3>Error:</h3>
+                                                                  <ul>
+                                                                    <li><%=flash[:error]%></li>
+                                                                  </ul>
+                                                                </div>
+                                                              <%else%>
+                                                              <%end%>
 
-                                                  <%=yield%>
+                                                              <%=yield%>
+                                                            </td>
+                                                          </tr>
+                                                  </table>
+
+                                                 
                                                   <!--
 							<h2>One Column (no sidebar)</h2>
 							<p>This is the second generic interior page. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ante ante, viverra a ornare sed, convallis sed est. Proin felis sapien, adipiscing quis eleifend vel, sodales vitae sapien. Donec vel lacus leo, eu convallis metus. Cras egestas feugiat tortor, vitae interdum augue aliquam a. Sed nec augue id orci egestas commodo in eget magna. Nunc eleifend diam non odio laoreet placerat gravida nulla bibendum. Phasellus tempus imperdiet suscipit.</p>

@@ -3,6 +3,26 @@ class ReservacionesController < ApplicationController
   
   end
 
+
+  def list
+    @reservaciones = Reservacion.find(:all)
+  end
+
+
+  def new_or_edit
+    @reservacion = Reservacion.new
+  end
+
+  def save
+    @reservacion = Reservacion.new(params[:reservacion])
+    if @reservacion.save
+      flash[:notice] = "Reservación guardada correctamente"
+      redirect_to :controller => "home"
+    end
+  end
+
+
+
   def calendario
      @reservacion = Reservacion.new
      #@sesiones = Sesion.find(:all, :select=> ["s.*"], :joins => "s, horarios h", :conditions => ["s.horario_id=h.id"], :order => "s.fecha, h.hora,h.minutos")
@@ -12,7 +32,7 @@ class ReservacionesController < ApplicationController
 
   
 
-  def resumen_habitaciones
+  def daily_show
     if params[:year] =~ /^\d{4}$/ && params[:month] =~ /^\d{1,2}$/ && params[:day] =~ /^\d{1,2}$/
        @fecha = DateTime.parse("#{params[:year]}-#{params[:month]}-#{params[:day]}")
        @before = @fecha.yesterday
