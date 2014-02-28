@@ -3,8 +3,10 @@ class CreateDetalleReservacions < ActiveRecord::Migration
     create_table :detalle_reservacions do |t|
       t.integer :reservacion_id
       t.integer :habitacion_id
-      t.datetime :fechahora_inicial
-      t.datetime :fechahora_final
+      t.date :fecha_inicial
+      t.integer :hora_inicial
+      t.date :fecha_final
+      t.integer :hora_final
       t.boolean :activa
     end
   end

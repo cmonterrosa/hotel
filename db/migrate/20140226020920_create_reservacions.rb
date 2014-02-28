@@ -1,6 +1,8 @@
 class CreateReservacions < ActiveRecord::Migration
   def self.up
     create_table :reservacions do |t|
+      t.string :anio, :limit => 4
+      t.string :folio, :limit => 4
       t.string :nombre, :limit => 60
       t.string :rfc, :limit => 13
       t.string :direccion, :limit => 60
@@ -10,6 +12,8 @@ class CreateReservacions < ActiveRecord::Migration
       t.string :observaciones, :limit => 100
       t.timestamps
     end
+
+    add_index :reservacions, :folio, :name => "folio"
   end
 
   def self.down

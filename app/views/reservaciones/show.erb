@@ -1,0 +1,54 @@
+<div class="container">
+  <div class="formee">
+    <table align="center" class="subprincipal" width="95%" cellspacing="5" style="BORDER-RIGHT: #cccccc 1px solid; BORDER-TOP: #cccccc 1px solid; BORDER-LEFT: #cccccc 1px solid; BORDER-BOTTOM: #cccccc 1px solid;">
+      <tr class="tdiagnostico">
+        <td align="center" ><label>DETALLE DE LA RESERVACION NUMERO <%=@reservacion.numero_folio%></label></td>
+      </tr>
+    </table>
+    <fieldset>
+      <div class="grid-12-12 clear">
+        <table width="95%" border="0" cellspacing="5" cellpadding="0" class="sample" style="BORDER-RIGHT: #cccccc 1px solid; BORDER-TOP: #cccccc 1px solid; BORDER-LEFT: #cccccc 1px solid; BORDER-BOTTOM: #cccccc 1px solid">
+          <tr class="subprincipal">
+            <td style="vertical-align: middle;"><label>NP</label></td>
+            <td style="vertical-align: middle;"><label>Habitación</label></td>
+            <td style="vertical-align: middle;"><label>Inicio</label></td>
+            <td style="vertical-align: middle;"><label>Fin</label></td>
+            <td style="vertical-align: middle;" colspan="3" align="center"><label>Acciones</label></td>
+          </tr>
+          <%contador=1%>
+          <% @detalles.each do |d| %>
+          <tr>
+            <td style="vertical-align: middle;"><label><%=h contador%></label></td>
+            <td style="vertical-align: middle;"><label><%=h d.contador_id%></label></td>
+            <td style="vertical-align: middle;"><label><%=h "RESIDENCIA 1"%></label></td>
+            <td style="vertical-align: middle;"><label><%=h r.created_at.strftime("%Y-%m-%d / %H:%M:%S")%></label></td>
+            <td style="vertical-align: middle;"><%= button_to 'Detalle', {:action => "show", :id => r} %></td>
+            <td style="vertical-align: middle;"><%= button_to 'Editar', {:action => "edit", :id => r}, :method => :delete, :class => 'boton'%></td>
+            <td style="vertical-align: middle;"><%= button_to 'Eliminar', {:action => "destroy", :id => r}, :confirm => '¿Esta seguro?', :method => :post, :class => 'boton' %></td>
+          </tr>
+          <%end%>
+        </table>
+      </div>
+
+    <div class="grid-12-12 clear"></div>
+
+    <!-- ADJUNTAR ARCHIVO -->
+    <% form_for :reservacion, @reservacion, :url => { :action => "new_or_edit", :controller => "reservaciones" } do |f| -%>
+      <div class="grid-center">
+        <input type="submit" title="NUEVA RESERVACION" value="NUEVA RESERVACION" />
+      </div>
+    <%end%>
+    </fieldset>
+
+  <div class="grid-12-12 clear"></div>
+
+
+  <!-- boton regresar -->
+  <div class="titulos">
+          <%= link_to image_tag("botones/btn_regresar.png", :border =>0) , :controller => "home", :action => "index"%><br />
+  </div>
+
+
+  </div>
+</div>
+

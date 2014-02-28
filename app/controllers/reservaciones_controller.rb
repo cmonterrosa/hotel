@@ -16,9 +16,15 @@ class ReservacionesController < ApplicationController
   def save
     @reservacion = Reservacion.new(params[:reservacion])
     if @reservacion.save
-      flash[:notice] = "Reservación guardada correctamente"
+      @reservacion.generar_folio_reservacion!
+      flash[:notice] = "Reservación guardada correctamente con folio: #{@reservacion.numero_folio}"
       redirect_to :controller => "home"
     end
+  end
+
+  def show
+    @reservacion = Reservacion.find(params[:id])
+    @detalle = @reservacion.detalle_reservacions
   end
 
 
