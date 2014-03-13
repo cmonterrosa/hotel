@@ -14,6 +14,8 @@ class CreateReservacions < ActiveRecord::Migration
     end
 
     add_index :reservacions, :folio, :name => "folio"
+    add_index :reservacions, [:folio, :anio], :name => "anio_folio"
+
   end
 
   def self.down

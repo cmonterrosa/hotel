@@ -7,8 +7,12 @@ class CreateDetalleReservacions < ActiveRecord::Migration
       t.integer :hora_inicial
       t.date :fecha_final
       t.integer :hora_final
+      t.timestamps
       t.boolean :activa
     end
+
+    add_index :detalle_reservacions, :reservacion_id, :name => "reservacion"
+
   end
 
   def self.down
