@@ -24,7 +24,7 @@ class ReservacionesController < ApplicationController
 
   def show
     @reservacion = Reservacion.find(params[:id])
-    @detalle = @reservacion.detalle_reservacions
+    @detalles = @reservacion.detalle_reservacions
   end
 
 
@@ -32,6 +32,7 @@ class ReservacionesController < ApplicationController
   def calendario
      @reservacion = Reservacion.new
      #@sesiones = Sesion.find(:all, :select=> ["s.*"], :joins => "s, horarios h", :conditions => ["s.horario_id=h.id"], :order => "s.fecha, h.hora,h.minutos")
+     @reservaciones = DetalleReservacion.find(:all)
      @date = params[:month] ? Date.parse(params[:month].gsub('-', '/')) : Date.today
      @title = "Reservaciones"
   end

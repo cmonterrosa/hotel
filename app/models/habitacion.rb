@@ -1,3 +1,3 @@
 class Habitacion < ActiveRecord::Base
-  belongs_to :detalle
+  has_many :detalle_reservacions
 end

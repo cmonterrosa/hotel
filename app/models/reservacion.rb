@@ -7,7 +7,7 @@ class Reservacion < ActiveRecord::Base
         maximo=  Reservacion.maximum(:folio, :conditions => ["anio = ?", anio])
         folio = 1 unless maximo
         folio ||= maximo.to_i + 1
-        self.update_attributes!(:folio => folio) if folio
+        self.update_attributes!(:folio => folio, :anio => Time.now.year) if folio
      end
    end
 

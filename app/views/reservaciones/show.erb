@@ -20,7 +20,7 @@
           <tr>
             <td style="vertical-align: middle;"><label><%=h contador%></label></td>
             <td style="vertical-align: middle;"><label><%=h d.contador_id%></label></td>
-            <td style="vertical-align: middle;"><label><%=h "RESIDENCIA 1"%></label></td>
+            <td style="vertical-align: middle;"><label><%=h d.habitacion.descripcion%></label></td>
             <td style="vertical-align: middle;"><label><%=h r.created_at.strftime("%Y-%m-%d / %H:%M:%S")%></label></td>
             <td style="vertical-align: middle;"><%= button_to 'Detalle', {:action => "show", :id => r} %></td>
             <td style="vertical-align: middle;"><%= button_to 'Editar', {:action => "edit", :id => r}, :method => :delete, :class => 'boton'%></td>
@@ -33,7 +33,7 @@
     <div class="grid-12-12 clear"></div>
 
     <!-- ADJUNTAR ARCHIVO -->
-    <% form_for :reservacion, @reservacion, :url => { :action => "new_or_edit", :controller => "reservaciones" } do |f| -%>
+    <% form_for :reservacion, @reservacion, :url => { :action => "new_or_edit", :controller => "detalle_reservacions", :id => @reservacion } do |f| -%>
       <div class="grid-center">
         <input type="submit" title="NUEVA RESERVACION" value="NUEVA RESERVACION" />
       </div>

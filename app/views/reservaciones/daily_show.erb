@@ -21,8 +21,13 @@
 
 <%for habitacion in Habitacion.all%>
 
-<p>
-  <%=h (habitacion.descripcion)%>
+<%if d = DetalleReservacion.find(:first, :conditions => ["habitacion_id = ? AND (? between fecha_inicial AND fecha_final)", habitacion.id, @fecha])%>
+<p style="color: red;">
+  NO DISPONIBLE: <%=h (link_to habitacion.descripcion, :action => "show", :controller => "detalle_reservacions", :id => d)%>
+</p>
+<%end%>
+<p style="color: green">
+  LIBRE: <%=h (habitacion.descripcion)%>
 </p>
 
 <%end%>
