@@ -1,0 +1,46 @@
+<div class="container">
+
+  <div class="formee-msg-info">
+    <h3>Información importante</h3>
+    <ul>
+      <li>Los campos marcados con <em class="formee-req">*</em> son obligatorios.</li>
+    </ul>
+  </div>
+
+  <% form_for :detalle_reservacion, @detalle_reservacion, :url => { :action => "save", :id => @reservacion}, :html => {:class => "formee", :name => "reservacion"} do |f| -%>
+  <fieldset>
+    <legend>DETALLE DE RESERVACIÓN</legend>
+
+    <div id="prellenado" style="background:#ebf7aa;">
+
+      <div class="grid-6-12">
+        <label>Habitación: <em class="formee-req">*</em></label>
+        <%=  f.select :habitacion_id, Habitacion.all.collect {|p| [ p.descripcion, p.id ] }, {:selected => @habitacion}%>
+      </div>
+
+      <div class="grid-12-12 clear"></div>
+
+      <div class="grid-4-12">
+        <label style=" font-weight: bold;">Fecha inicial:</label>
+        <%= f.date_select :fecha_inicial%>
+      </div>
+
+    
+
+      <div class="grid-4-12">
+        <label style=" font-weight: bold;">Fecha de salida:</label>
+       <%= f.date_select :fecha_final%>
+      </div>
+
+      <div class="grid-12-12 clear"></div>
+
+
+    <!-- submit -->
+    <div class="grid-12-12">
+      <input class="right" type="submit" onclick="to_uppercase();" title="GUARDAR RESERVACION" value="GUARDAR RESERVACION" />
+    </div>
+    </div>
+  </fieldset>
+
+  <%end%>
+</div>
